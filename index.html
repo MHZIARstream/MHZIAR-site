@@ -3,84 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MHZIAR_STREAM</title>
+
+    <title>MHZIAR_STREAM | Gaming</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            font-family: sans-serif;
-            background: #111;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #080b12;
             color: white;
-            text-align: center;
         }
 
         header {
-            padding: 50px 20px;
-            background: #1e1e1e;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 20px;
+            background:
+                radial-gradient(circle at top, #293cff55, transparent 45%),
+                #080b12;
         }
 
-        h1 {
-            font-size: 38px;
+        .hero {
+            max-width: 700px;
+        }
+
+        .logo {
+            font-size: 55px;
             margin-bottom: 10px;
         }
 
-        p {
-            font-size: 18px;
-            color: #ccc;
+        h1 {
+            font-size: 42px;
+            margin: 10px 0;
         }
 
-        .box {
-            margin: 30px 20px;
-            padding: 25px;
-            background: #222;
-            border-radius: 15px;
+        .subtitle {
+            color: #aeb6c7;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin-top: 30px;
         }
 
         .button {
             display: inline-block;
-            margin-top: 15px;
-            padding: 12px 25px;
-            background: #e91e63;
-            color: white;
+            padding: 14px 25px;
+            margin: 7px;
+            border-radius: 12px;
             text-decoration: none;
-            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            background: #5865f2;
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .button.aparat {
+            background: #e91e63;
+        }
+
+        section {
+            padding: 55px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #121722;
+            border: 1px solid #252d3d;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-icon {
+            font-size: 45px;
+        }
+
+        .card h3 {
+            font-size: 22px;
+        }
+
+        .card p {
+            color: #9da7ba;
+            line-height: 1.7;
         }
 
         footer {
-            margin-top: 50px;
-            padding: 20px;
-            background: #1e1e1e;
-            color: #888;
+            text-align: center;
+            padding: 25px;
+            background: #05070b;
+            color: #778094;
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>🎮 MHZIAR_STREAM</h1>
-        <p>به سایت من خوش اومدی!</p>
-    </header>
+<header>
+    <div class="hero">
 
-    <div class="box">
-        <h2>درباره من</h2>
-        <p>
-            اینجا قراره ویدیوهای گیمینگ و مطالب جذاب قرار بگیره.
+        <div class="logo">🎮</div>
+
+        <h1>MHZIAR_STREAM</h1>
+
+        <p class="subtitle">
+            به دنیای گیمینگ من خوش اومدی!<br>
+            اینجا قراره کلی بازی، ویدیو و محتوای جذاب ببینی.
         </p>
 
-        <a class="button" href="https://www.aparat.com/" target="_blank">
-            کانال آپارات
-        </a>
+        <div class="buttons">
+
+            <a class="button aparat"
+               href="https://www.aparat.com/"
+               target="_blank">
+                🎬 کانال آپارات
+            </a>
+
+            <a class="button"
+               href="#games">
+                🎮 بازی‌ها
+            </a>
+
+        </div>
+
+    </div>
+</header>
+
+
+<section id="games">
+
+    <h2 class="title">🔥 بازی‌های مورد علاقه</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="game-icon">⛏️</div>
+            <h3>Minecraft</h3>
+            <p>
+                ساخت‌وساز، ماجراجویی و بقا.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="game-icon">🎯</div>
+            <h3>Counter-Strike</h3>
+            <p>
+                رقابت و مبارزه در میدان نبرد.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="game-icon">🎮</div>
+            <h3>Roblox</h3>
+            <p>
+                دنیایی پر از بازی‌های مختلف.
+            </p>
+        </div>
+
     </div>
 
-    <div class="box">
-        <h2>🎮 بازی‌های مورد علاقه</h2>
-        <p>Minecraft | Roblox | Counter-Strike</p>
+</section>
+
+
+<section>
+
+    <h2 class="title">👑 درباره MHZIAR</h2>
+
+    <div class="card">
+
+        <p>
+            من MHZIAR هستم و به بازی‌های کامپیوتری و ساخت محتوای گیمینگ علاقه دارم.
+            این سایت قراره محل اصلی معرفی ویدیوها و فعالیت‌های گیمینگ من باشه.
+        </p>
+
     </div>
 
-    <footer>
-        © 2026 MHZIAR_STREAM
-    </footer>
+</section>
+
+
+<footer>
+    © 2026 MHZIAR_STREAM
+</footer>
 
 </body>
 </html>
