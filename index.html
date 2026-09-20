@@ -1,778 +1,629 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NEXORA</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Tahoma, Arial, sans-serif;
-      color: #fff;
-      min-height: 100vh;
-      overflow-x: hidden;
-
-      background:
-        radial-gradient(circle at 20% 20%, rgba(0, 110, 255, .20), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(140, 0, 255, .18), transparent 30%),
-        linear-gradient(135deg, #050816, #090b1f 50%, #03040b);
-    }
-
-    /* افکت نور پس‌زمینه */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(0, 180, 255, .08), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(150, 0, 255, .08), transparent 35%);
-      z-index: -1;
-    }
-
-    /* انیمیشن ورود */
-    .page {
-      animation: pageEnter 1s ease forwards;
-    }
-
-    @keyframes pageEnter {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* هدر */
-    header {
-      text-align: center;
-      padding: 55px 20px 30px;
-    }
-
-    .logo {
-      font-size: clamp(42px, 10vw, 76px);
-      font-weight: 900;
-      letter-spacing: 4px;
-
-      background: linear-gradient(90deg, #00c6ff, #7c4dff, #c44dff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-
-      text-shadow: 0 0 30px rgba(0, 174, 255, .25);
-    }
-
-    .subtitle {
-      margin-top: 10px;
-      color: #cfd5ff;
-      font-size: clamp(14px, 3vw, 19px);
-      letter-spacing: 2px;
-    }
-
-    /* کادر اصلی */
-    .main-box {
-      width: min(1050px, 92%);
-      margin: 15px auto 40px;
-      padding: 28px;
-
-      background: rgba(10, 15, 35, .72);
-      border: 1px solid rgba(100, 160, 255, .28);
-      border-radius: 28px;
-
-      box-shadow:
-        0 0 45px rgba(0, 110, 255, .12),
-        inset 0 0 35px rgba(120, 70, 255, .04);
-
-      backdrop-filter: blur(14px);
-    }
-
-    /* منو */
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .menu button {
-      width: 100%;
-      border: 1px solid rgba(100, 180, 255, .22);
-      border-radius: 18px;
-
-      padding: 19px 15px;
-
-      color: white;
-      background: linear-gradient(
-        135deg,
-        rgba(20, 30, 65, .9),
-        rgba(25, 15, 55, .9)
-      );
-
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-
-      transition: .25s ease;
-    }
-
-    .menu button:hover,
-    .menu button:active {
-      transform: translateY(-4px) scale(1.015);
-      border-color: #4db8ff;
-
-      box-shadow:
-        0 0 22px rgba(0, 174, 255, .22),
-        0 0 30px rgba(130, 70, 255, .12);
-    }
-
-    /* بخش‌ها */
-    .section {
-      display: none;
-      margin-top: 28px;
-
-      padding: 25px;
-
-      border-radius: 22px;
-      background: rgba(3, 7, 20, .55);
-      border: 1px solid rgba(130, 150, 255, .18);
-
-      animation: sectionEnter .35s ease;
-    }
-
-    .section.active {
-      display: block;
-    }
-
-    @keyframes sectionEnter {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .section h2 {
-      margin-bottom: 18px;
-      color: #65c7ff;
-      text-align: center;
-    }
-
-    .section-description {
-      text-align: center;
-      color: #c6cbe0;
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-
-    /* کارت بازی‌ها */
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-
-    .game-card {
-      padding: 20px;
-      border-radius: 18px;
-
-      background: linear-gradient(
-        145deg,
-        rgba(18, 27, 58, .95),
-        rgba(20, 12, 45, .9)
-      );
-
-      border: 1px solid rgba(110, 150, 255, .18);
-
-      transition: .25s ease;
-      text-align: center;
-    }
-
-    .game-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 25px rgba(80, 130, 255, .14);
-    }
-
-    .game-card h3 {
-      margin-bottom: 9px;
-    }
-
-    .pc-label {
-      color: #8fd8ff;
-      font-size: 13px;
-    }
-
-    /* کارت اطلاعات */
-    .info-card {
-      text-align: center;
-      padding: 22px;
-      border-radius: 18px;
-      background: rgba(20, 25, 55, .65);
-      border: 1px solid rgba(100, 150, 255, .18);
-    }
-
-    .username {
-      display: inline-block;
-      margin: 12px 0;
-      padding: 10px 16px;
-
-      direction: ltr;
-
-      color: #78d8ff;
-      background: rgba(0, 150, 255, .08);
-
-      border-radius: 10px;
-      font-weight: bold;
-      font-family: monospace;
-    }
-
-    .copy-btn,
-    .back-top {
-      border: none;
-      border-radius: 12px;
-      padding: 11px 18px;
-
-      color: white;
-      background: linear-gradient(90deg, #087cff, #704cff);
-
-      cursor: pointer;
-      font-weight: bold;
-
-      transition: .2s;
-    }
-
-    .copy-btn:hover,
-    .back-top:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 18px rgba(60, 140, 255, .3);
-    }
-
-    /* جستجو */
-    .search-box {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .search-box input {
-      flex: 1;
-      min-width: 0;
-
-      padding: 14px 16px;
-
-      color: white;
-      background: rgba(0, 0, 0, .35);
-
-      border: 1px solid rgba(100, 160, 255, .25);
-      border-radius: 14px;
-
-      outline: none;
-      font-size: 15px;
-    }
-
-    .search-box input:focus {
-      border-color: #46baff;
-      box-shadow: 0 0 15px rgba(0, 170, 255, .12);
-    }
-
-    .search-result {
-      display: none;
-      padding: 15px;
-      margin-top: 10px;
-
-      border-radius: 14px;
-      background: rgba(20, 30, 60, .7);
-
-      border: 1px solid rgba(100, 150, 255, .15);
-    }
-
-    /* درباره من */
-    .about {
-      line-height: 2.1;
-      color: #d8dcf0;
-    }
-
-    .about-intro {
-      font-size: 17px;
-      color: white;
-      margin-bottom: 12px;
-    }
-
-    .about-list {
-      list-style: none;
-      margin-top: 15px;
-    }
-
-    .about-list li {
-      margin: 8px 0;
-    }
-
-    /* وضعیت در دست ساخت */
-    .construction {
-      padding: 22px;
-      text-align: center;
-
-      color: #ffd76a;
-
-      border-radius: 16px;
-      background: rgba(255, 190, 0, .05);
-      border: 1px solid rgba(255, 190, 0, .18);
-    }
-
-    /* ویدیو */
-    .video-placeholder {
-      text-align: center;
-      padding: 30px;
-
-      border: 1px dashed rgba(100, 180, 255, .25);
-      border-radius: 18px;
-
-      color: #cbd1e8;
-    }
-
-    .aparat-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 20px;
-
-      color: white;
-      text-decoration: none;
-
-      border-radius: 12px;
-      background: linear-gradient(90deg, #e53935, #ff7043);
-
-      transition: .2s;
-    }
-
-    .aparat-btn:hover {
-      transform: scale(1.04);
-    }
-
-    /* فوتر */
-    footer {
-      width: min(1050px, 92%);
-      margin: 0 auto 30px;
-
-      text-align: center;
-      padding: 25px 15px;
-
-      color: #9da5c4;
-
-      border-top: 1px solid rgba(100, 150, 255, .15);
-    }
-
-    footer strong {
-      color: #67caff;
-    }
-
-    /* برگشت به بالا */
-    .back-top {
-      margin-top: 15px;
-    }
-
-    /* موبایل */
-    @media (max-width: 650px) {
-      header {
-        padding-top: 35px;
-      }
-
-      .main-box {
-        padding: 16px;
-        border-radius: 22px;
-      }
-
-      .menu {
-        grid-template-columns: 1fr;
-      }
-
-      .games-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        padding: 18px;
-      }
-
-      .search-box {
-        flex-direction: column;
-      }
-
-      .search-box button {
-        width: 100%;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%,#24105c 0,transparent 30%),
+    radial-gradient(circle at 80% 80%,#063d68 0,transparent 30%),
+    linear-gradient(135deg,#050816,#090018,#03121f);
+  color:#fff;
+  min-height:100vh;
+  padding:20px;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  animation:show .8s ease;
+}
+
+@keyframes show{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+header{
+  text-align:center;
+  padding:30px 10px;
+}
+
+.logo{
+  font-size:48px;
+  font-weight:bold;
+  color:#fff;
+  text-shadow:0 0 15px #00bfff,0 0 30px #7b2cff;
+}
+
+.subtitle{
+  color:#bfc8ff;
+  margin-top:8px;
+}
+
+.panel{
+  background:rgba(10,15,35,.72);
+  border:1px solid #168dff;
+  box-shadow:0 0 25px rgba(0,150,255,.25);
+  backdrop-filter:blur(12px);
+  border-radius:24px;
+  padding:22px;
+}
+
+.menu{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  color:white;
+  background:linear-gradient(135deg,#102b61,#32105c);
+  border:1px solid #248dff;
+  border-radius:15px;
+  padding:15px;
+  font-size:16px;
+  transition:.2s;
+}
+
+button:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 18px #168dff;
+}
+
+section{
+  display:none;
+  margin-top:25px;
+}
+
+section.active{
+  display:block;
+}
+
+h2{
+  margin-bottom:18px;
+  color:#65cfff;
+  text-shadow:0 0 10px #008cff;
+}
+
+.card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(80,180,255,.5);
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+}
+
+.game-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.game-card{
+  background:linear-gradient(145deg,rgba(0,130,255,.12),rgba(120,0,255,.12));
+  border:1px solid #405cff;
+  border-radius:18px;
+  padding:20px;
+}
+
+.game-card h3{
+  margin-bottom:8px;
+}
+
+.search-box{
+  width:100%;
+  padding:16px;
+  border-radius:14px;
+  border:1px solid #258fff;
+  background:#070d20;
+  color:white;
+  font-size:16px;
+  outline:none;
+  margin-bottom:15px;
+}
+
+.result{
+  padding:14px;
+  border-radius:12px;
+  background:rgba(255,255,255,.06);
+  margin:8px 0;
+  cursor:pointer;
+}
+
+.result:hover{
+  background:rgba(0,140,255,.15);
+}
+
+#zombieGame{
+  text-align:center;
+}
+
+.game-screen{
+  position:relative;
+  height:420px;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid #258fff;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(0,150,255,.15),transparent 35%),
+    linear-gradient(#050816,#071525);
+  margin-bottom:15px;
+}
+
+.hud{
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:10px;
+  background:rgba(0,0,0,.35);
+}
+
+.path{
+  position:absolute;
+  top:80px;
+  bottom:40px;
+  right:15%;
+  width:70%;
+  border:2px dashed rgba(0,170,255,.3);
+  border-radius:20px;
+}
+
+.zombie{
+  position:absolute;
+  right:-60px;
+  top:180px;
+  font-size:45px;
+  transition:right .1s linear;
+}
+
+.base{
+  position:absolute;
+  left:15px;
+  top:160px;
+  font-size:50px;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+footer{
+  text-align:center;
+  color:#9da7c7;
+  padding:25px 5px 10px;
+  font-size:13px;
+}
+
+@media(max-width:650px){
+  .menu,.game-grid{
+    grid-template-columns:1fr;
+  }
+
+  .logo{
+    font-size:38px;
+  }
+
+  body{
+    padding:10px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<div class="page">
-
-  <header>
-    <div class="logo">NEXORA</div>
-    <div class="subtitle">Gaming • Technology • Creativity</div>
-  </header>
-
-  <main class="main-box">
-
-    <!-- منوی اصلی -->
-    <div class="menu">
-
-      <button onclick="showSection('games')">
-        🎮 بازی‌های مورد علاقه من
-      </button>
-
-      <button onclick="showSection('videos')">
-        🎬 ویدیوهای من
-      </button>
-
-      <button onclick="showSection('roblox')">
-        👤 نام کاربری روبلاکس
-      </button>
-
-      <button onclick="showSection('minecraft')">
-        ⛏️ سرور ماینکرفت
-      </button>
-
-      <button onclick="showSection('mygame')">
-        🎮 بازی من
-      </button>
-
-      <button onclick="showSection('search')">
-        🔎 جستجو
-      </button>
-
-      <button onclick="showSection('about')">
-        👤 درباره من
-      </button>
-
-    </div>
-
-
-    <!-- بازی‌ها -->
-    <section id="games" class="section">
-
-      <h2>🎮 بازی‌های مورد علاقه من</h2>
-
-      <div class="games-grid">
-
-        <div class="game-card">
-          <h3>🎯 Call of Duty Mobile</h3>
-        </div>
-
-        <div class="game-card">
-          <h3>🎮 Roblox</h3>
-          <div class="pc-label">💻 برای کامپیوتر</div>
-        </div>
-
-        <div class="game-card">
-          <h3>⛏️ Minecraft</h3>
-          <div class="pc-label">💻 برای کامپیوتر</div>
-        </div>
-
-        <div class="game-card">
-          <h3>🚗 GTA San Andreas</h3>
-          <div class="pc-label">💻 برای کامپیوتر</div>
-        </div>
-
-        <div class="game-card">
-          <h3>🔫 Counter-Strike</h3>
-          <div class="pc-label">💻 برای کامپیوتر</div>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ویدیوها -->
-    <section id="videos" class="section">
-
-      <h2>🎬 ویدیوهای من</h2>
-
-      <p class="section-description">
-        ویدیوهای من را می‌توانید در این بخش مشاهده کنید.
-      </p>
-
-      <div class="video-placeholder">
-        🚧 ویدیوها به‌زودی اینجا نمایش داده می‌شوند.
-
-        <br>
-
-        <a
-          class="aparat-btn"
-          href="https://www.aparat.com/MHZIAR_stream"
-          target="_blank"
-        >
-          🎬 مشاهده کانال آپارات
-        </a>
-      </div>
-
-    </section>
-
-
-    <!-- روبلاکس -->
-    <section id="roblox" class="section">
-
-      <h2>👤 نام کاربری روبلاکس</h2>
-
-      <div class="info-card">
-
-        <div>🎮 نام کاربری من:</div>
-
-        <div id="robloxName" class="username">
-          Asadi_325
-        </div>
-
-        <br>
-
-        <button class="copy-btn" onclick="copyUsername()">
-          📋 کپی نام کاربری
-        </button>
-
-        <p id="copyMessage"></p>
-
-      </div>
-
-    </section>
-
-
-    <!-- ماینکرفت -->
-    <section id="minecraft" class="section">
-
-      <h2>⛏️ سرور ماینکرفت</h2>
-
-      <div class="construction">
-        🚧 سرور در دست ساخت است
-      </div>
-
-    </section>
-
-
-    <!-- بازی خودم -->
-    <section id="mygame" class="section">
-
-      <h2>🎮 بازی من</h2>
-
-      <div class="construction">
-        🚧 بازی در دست ساخت است
-      </div>
-
-    </section>
-
-
-    <!-- جستجو -->
-    <section id="search" class="section">
-
-      <h2>🔎 جستجو</h2>
-
-      <div class="search-box">
-
-        <input
-          id="searchInput"
-          type="text"
-          placeholder="اسم بازی یا چیزی که می‌خواهید پیدا کنید..."
-          oninput="searchSite()"
-        >
-
-      </div>
-
-      <div id="searchResults">
-
-        <div class="search-result" data-keywords="call of duty cod بازی">
-          🎯 Call of Duty Mobile
-        </div>
-
-        <div class="search-result" data-keywords="roblox روبلاکس asadi_325">
-          🎮 Roblox — نام کاربری: Asadi_325
-        </div>
-
-        <div class="search-result" data-keywords="minecraft ماینکرفت سرور">
-          ⛏️ Minecraft — سرور در دست ساخت
-        </div>
-
-        <div class="search-result" data-keywords="gta grand theft auto سن اندرس">
-          🚗 GTA San Andreas
-        </div>
-
-        <div class="search-result" data-keywords="counter strike cs کانتر">
-          🔫 Counter-Strike
-        </div>
-
-        <div class="search-result" data-keywords="video videos ویدیو آپارات aparat">
-          🎬 ویدیوهای من
-        </div>
-
-        <div class="search-result" data-keywords="about درباره من مهزیار">
-          👤 درباره من
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- درباره من -->
-    <section id="about" class="section">
-
-      <h2>👤 درباره من</h2>
-
-      <div class="about">
-
-        <div class="about-intro">
-          سلام، من <strong>مهزیار</strong> هستم 👋
-        </div>
-
-        🎮 عاشق دنیای بازی‌های ویدیویی و تکنولوژی هستم و همیشه از تجربه کردن چیزهای جدید لذت می‌برم.
-
-        <br>
-
-        💻 به کامپیوتر، ساخت سایت و توسعه پروژه‌های شخصی علاقه دارم و دوست دارم ایده‌هام رو به چیزهای واقعی تبدیل کنم.
-
-        <br>
-
-        🎬 در آپارات با نام <strong>MHZIAR_stream</strong> فعالیت می‌کنم و محتوای مرتبط با بازی منتشر می‌کنم.
-
-        <br>
-
-        🎮 بازی‌های مورد علاقه‌ام شامل
-        <strong>Call of Duty Mobile، Roblox، Minecraft، GTA San Andreas و Counter-Strike</strong>
-        هستند.
-
-        <br>
-
-        🌱 مسیر من هنوز ادامه داره؛ یاد می‌گیرم، تجربه می‌کنم و هر بار سعی می‌کنم چیز جدیدی بسازم.
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- فوتر -->
-  <footer>
-
-    <div>
-      © 2026 <strong>NEXORA</strong>
-    </div>
-
-    <div style="margin-top: 8px;">
-      🎮 ساخته‌شده با علاقه به بازی و تکنولوژی
-    </div>
-
-    <div style="margin-top: 8px;">
-      🎬 Aparat: <strong>MHZIAR_stream</strong>
-    </div>
-
-    <div style="margin-top: 12px; font-size: 13px;">
-      به دلیل مشکلات مربوط به نام، لینک سایت همچنان با نام
-      <strong>MHZIAR</strong>
-      نمایش داده می‌شود. معذرت می‌خواهم 🙏
-    </div>
-
-    <button class="back-top" onclick="window.scrollTo({top:0, behavior:'smooth'})">
-      ⬆️ برگشت به بالای صفحه
-    </button>
-
-  </footer>
+<div class="container">
+
+<header>
+  <div class="logo">NEXORA</div>
+  <div class="subtitle">Gaming • Technology • Creativity</div>
+</header>
+
+<div class="panel">
+
+<div class="menu">
+  <button onclick="showSection('games')">🎮 بازی‌های مورد علاقه من</button>
+  <button onclick="showSection('videos')">🎬 ویدیوهای من</button>
+  <button onclick="showSection('roblox')">👤 نام کاربری روبلاکس</button>
+  <button onclick="showSection('minecraft')">⛏️ سرور ماینکرفت</button>
+  <button onclick="showSection('mygame')">🎮 بازی من</button>
+  <button onclick="showSection('search')">🔎 جستجو</button>
+  <button onclick="showSection('miniGames')">🕹️ بازی‌های NEXORA</button>
+</div>
+
+<section id="games">
+<h2>🎮 بازی‌های مورد علاقه من</h2>
+
+<div class="game-grid">
+
+<div class="game-card">
+<h3>🎯 Call of Duty Mobile</h3>
+<p>بازی مورد علاقه من برای موبایل.</p>
+</div>
+
+<div class="game-card">
+<h3>🎮 Roblox</h3>
+<p>💻 برای کامپیوتر</p>
+</div>
+
+<div class="game-card">
+<h3>⛏️ Minecraft</h3>
+<p>💻 برای کامپیوتر</p>
+</div>
+
+<div class="game-card">
+<h3>🚗 GTA San Andreas</h3>
+<p>💻 برای کامپیوتر</p>
+</div>
+
+<div class="game-card">
+<h3>🔫 Counter-Strike</h3>
+<p>💻 برای کامپیوتر</p>
+</div>
+
+</div>
+</section>
+
+<section id="videos">
+<h2>🎬 ویدیوهای من</h2>
+<div class="card">
+<p>ویدیوهای من در آپارات:</p>
+<br>
+<button onclick="window.open('https://www.aparat.com/MHZIAR_stream','_blank')">
+مشاهده کانال آپارات
+</button>
+</div>
+</section>
+
+<section id="roblox">
+<h2>👤 نام کاربری روبلاکس</h2>
+<div class="card">
+<p>نام کاربری:</p>
+<h3>Asadi_325</h3>
+<br>
+<button onclick="copyText('Asadi_325')">📋 کپی نام کاربری</button>
+</div>
+</section>
+
+<section id="minecraft">
+<h2>⛏️ سرور ماینکرفت</h2>
+<div class="card">
+<h3>🚧 سرور در دست ساخت است</h3>
+<p>به‌زودی اطلاعات سرور اینجا قرار می‌گیرد.</p>
+</div>
+</section>
+
+<section id="mygame">
+<h2>🎮 بازی من</h2>
+<div class="card">
+<h3>🚧 بازی در دست ساخت است</h3>
+<p>به‌زودی اطلاعات بازی و لینک دریافت آن اضافه می‌شود.</p>
+</div>
+</section>
+
+<section id="search">
+<h2>🔎 جستجوی NEXORA</h2>
+
+<input
+class="search-box"
+id="searchInput"
+placeholder="اسم بازی یا چیزی که می‌خواهید پیدا کنید..."
+oninput="searchSite()"
+>
+
+<div id="searchResults"></div>
+</section>
+
+<section id="miniGames">
+<h2>🕹️ بازی‌های NEXORA</h2>
+
+<div class="game-grid">
+
+<div class="game-card">
+<h3>⚡ Reaction Test</h3>
+<p>سرعت واکنش خودت رو امتحان کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>🎯 هدف‌گیری</h3>
+<p>هدف‌ها رو سریع پیدا کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>🧠 حافظه</h3>
+<p>حافظه‌ات رو امتحان کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>❌⭕ دوز</h3>
+<p>مقابل کامپیوتر بازی کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>🔢 حدس عدد</h3>
+<p>عدد مخفی رو پیدا کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>🪨📄✂️ سنگ، کاغذ، قیچی</h3>
+<p>مقابل کامپیوتر بازی کن.</p>
+<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
+</div>
+
+<div class="game-card">
+<h3>🧟 Zombie Defense</h3>
+<p>جلوی عبور زامبی‌ها رو بگیر!</p>
+<button onclick="startZombieGame()">▶️ شروع بازی</button>
+</div>
+
+</div>
+</section>
+
+<section id="zombieGame">
+<h2>🧟 NEXORA Zombie Defense</h2>
+
+<div class="game-screen">
+
+<div class="hud">
+<span>❤️ جان: <b id="health">100</b></span>
+<span>💰 سکه: <b id="coins">0</b></span>
+<span>🎯 مرحله: <b id="level">1</b></span>
+</div>
+
+<div class="path"></div>
+
+<div class="base">🏠</div>
+
+<div id="zombie" class="zombie">🧟</div>
 
 </div>
 
+<div class="actions">
+<button onclick="shootZombie()">🔫 شلیک</button>
+<button onclick="freezeZombie()">🧪 فریز</button>
+<button onclick="pauseZombieGame()">⏸️ توقف</button>
+<button onclick="openShop()">🛒 فروشگاه</button>
+</div>
+
+<br>
+
+<button onclick="showSection('miniGames')">⬅️ برگشت به بازی‌ها</button>
+
+</section>
+
+<footer>
+© 2026 NEXORA<br>
+🎮 ساخته‌شده با علاقه به بازی و تکنولوژی<br>
+Aparat: MHZIAR_stream<br><br>
+به دلیل مشکلات مربوط به نام، لینک سایت همچنان با نام MHZIAR نمایش داده می‌شود. معذرت می‌خواهم 🙏
+</footer>
+
+</div>
+</div>
 
 <script>
 
-  /* نمایش بخش */
-  function showSection(id) {
+const searchData = [
+  {name:"🎯 Call of Duty Mobile",key:"cod کالاف کال اف بازی",section:"games"},
+  {name:"🎮 Roblox",key:"roblox روبلاکس بازی",section:"games"},
+  {name:"⛏️ Minecraft",key:"minecraft ماینکرفت ماینکرافت بازی سرور",section:"minecraft"},
+  {name:"🚗 GTA San Andreas",key:"gta سن اندرس بازی",section:"games"},
+  {name:"🔫 Counter-Strike",key:"counter strike کانتر استرایک بازی",section:"games"},
+  {name:"🎬 ویدیوهای من",key:"video ویدیو آپارات",section:"videos"},
+  {name:"👤 نام کاربری Roblox",key:"username نام کاربری روبلاکس",section:"roblox"},
+  {name:"🎮 بازی من",key:"بازی من پروژه",section:"mygame"},
+  {name:"🧟 Zombie Defense",key:"zombie زامبی زامبی دیفنس بازی",section:"miniGames"}
+];
 
-    const sections = document.querySelectorAll(".section");
+function showSection(id){
 
-    sections.forEach(section => {
-      section.classList.remove("active");
-    });
+  document.querySelectorAll("section").forEach(s=>{
+    s.classList.remove("active");
+  });
 
-    const target = document.getElementById(id);
+  document.getElementById(id).classList.add("active");
 
-    if (target) {
-      target.classList.add("active");
+  window.scrollTo({
+    top:document.getElementById(id).offsetTop-20,
+    behavior:"smooth"
+  });
+}
 
-      setTimeout(() => {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }, 50);
+function copyText(text){
+  navigator.clipboard.writeText(text);
+  alert("کپی شد ✅");
+}
+
+function searchSite(){
+
+  const input =
+    document.getElementById("searchInput")
+    .value
+    .trim()
+    .toLowerCase();
+
+  const results =
+    document.getElementById("searchResults");
+
+  if(!input){
+    results.innerHTML="";
+    return;
+  }
+
+  const found = searchData.filter(item =>
+    (item.name+" "+item.key)
+    .toLowerCase()
+    .includes(input)
+  );
+
+  if(found.length===0){
+    results.innerHTML=
+      "<div class='card'>😕 چیزی پیدا نشد</div>";
+    return;
+  }
+
+  results.innerHTML=found.map(item=>`
+    <div class="result" onclick="showSection('${item.section}')">
+      ${item.name}
+    </div>
+  `).join("");
+}
+
+
+/* Zombie Defense */
+
+let health=100;
+let coins=0;
+let level=1;
+let zombiePosition=-60;
+let zombieTimer=null;
+let paused=false;
+
+function startZombieGame(){
+
+  showSection("zombieGame");
+
+  health=100;
+  coins=0;
+  level=1;
+  zombiePosition=-60;
+
+  updateZombieUI();
+
+  clearInterval(zombieTimer);
+
+  zombieTimer=setInterval(moveZombie,120);
+}
+
+function moveZombie(){
+
+  if(paused) return;
+
+  zombiePosition+=3;
+
+  const zombie=document.getElementById("zombie");
+
+  zombie.style.right=zombiePosition+"px";
+
+  if(zombiePosition>430){
+
+    health-=10;
+    coins+=5;
+
+    zombiePosition=-60;
+
+    if(health<=0){
+
+      clearInterval(zombieTimer);
+
+      alert("💀 بازی تمام شد!\nامتیاز سکه: "+coins);
+
+      return;
     }
+
+    updateZombieUI();
+  }
+}
+
+function shootZombie(){
+
+  if(paused) return;
+
+  coins+=10;
+  zombiePosition=-60;
+
+  updateZombieUI();
+}
+
+function freezeZombie(){
+
+  if(paused) return;
+
+  paused=true;
+
+  setTimeout(()=>{
+    paused=false;
+  },3000);
+}
+
+function pauseZombieGame(){
+
+  paused=!paused;
+
+  alert(
+    paused
+    ? "⏸️ بازی متوقف شد"
+    : "▶️ بازی ادامه پیدا کرد"
+  );
+}
+
+function openShop(){
+
+  paused=true;
+
+  const buy=confirm(
+    "🛒 فروشگاه\n\n"+
+    "💰 سکه فعلی: "+coins+
+    "\n\n"+
+    "🔫 ارتقای تفنگ: 50 سکه"+
+    "\n❤️ جان اضافه: 30 سکه"+
+    "\n🧪 فریز: 40 سکه"+
+    "\n\n"+
+    "برای خرید تأیید را بزنید."
+  );
+
+  if(buy){
+
+    if(coins>=50){
+      coins-=50;
+      alert("🔫 تفنگ ارتقا پیدا کرد!");
+    }else{
+      alert("❌ سکه کافی نیست.");
+    }
+
   }
 
+  paused=false;
 
-  /* کپی نام کاربری روبلاکس */
-  function copyUsername() {
+  updateZombieUI();
+}
 
-    const username =
-      document.getElementById("robloxName").textContent.trim();
+function updateZombieUI(){
 
-    navigator.clipboard.writeText(username).then(() => {
+  document.getElementById("health").textContent=health;
+  document.getElementById("coins").textContent=coins;
+  document.getElementById("level").textContent=level;
 
-      const message =
-        document.getElementById("copyMessage");
-
-      message.textContent = "✅ نام کاربری کپی شد!";
-
-      setTimeout(() => {
-        message.textContent = "";
-      }, 1800);
-
-    }).catch(() => {
-
-      alert("کپی خودکار انجام نشد. نام کاربری: " + username);
-
-    });
-
-  }
+}
 
 
-  /* جستجوی سایت */
-  function searchSite() {
+/* شروع اولیه */
 
-    const input =
-      document.getElementById("searchInput").value
-      .toLowerCase()
-      .trim();
-
-    const results =
-      document.querySelectorAll(".search-result");
-
-    results.forEach(result => {
-
-      const keywords =
-        result.dataset.keywords.toLowerCase();
-
-      if (input !== "" && keywords.includes(input)) {
-        result.style.display = "block";
-      } else {
-        result.style.display = "none";
-      }
-
-    });
-
-  }
+showSection("games");
 
 </script>
 
 </body>
-</html>
+    </html>
