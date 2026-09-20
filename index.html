@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXORA</title>
+
+<title>NEXORA | Gaming & Technology</title>
 
 <style>
 *{
@@ -12,216 +13,517 @@
   padding:0;
 }
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   font-family:Tahoma,Arial,sans-serif;
   background:
-    radial-gradient(circle at 20% 20%,#24105c 0,transparent 30%),
-    radial-gradient(circle at 80% 80%,#063d68 0,transparent 30%),
-    linear-gradient(135deg,#050816,#090018,#03121f);
+    radial-gradient(circle at 20% 10%,rgba(0,170,255,.14),transparent 30%),
+    radial-gradient(circle at 80% 20%,rgba(150,0,255,.15),transparent 30%),
+    linear-gradient(135deg,#030712,#071326 50%,#03050d);
   color:#fff;
   min-height:100vh;
-  padding:20px;
+  overflow-x:hidden;
 }
 
-.container{
-  max-width:1000px;
-  margin:auto;
-  animation:show .8s ease;
-}
-
-@keyframes show{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:35px 35px;
+  z-index:-1;
 }
 
 header{
   text-align:center;
-  padding:30px 10px;
+  padding:45px 15px 30px;
 }
 
 .logo{
   font-size:48px;
-  font-weight:bold;
-  color:#fff;
-  text-shadow:0 0 15px #00bfff,0 0 30px #7b2cff;
+  font-weight:900;
+  letter-spacing:4px;
+  background:linear-gradient(90deg,#00d9ff,#9d4edd,#00d9ff);
+  background-size:200%;
+  -webkit-background-clip:text;
+  color:transparent;
+  animation:logoMove 5s linear infinite;
 }
 
 .subtitle{
-  color:#bfc8ff;
+  color:#9caac7;
   margin-top:8px;
+  font-size:15px;
 }
 
-.panel{
-  background:rgba(10,15,35,.72);
-  border:1px solid #168dff;
-  box-shadow:0 0 25px rgba(0,150,255,.25);
-  backdrop-filter:blur(12px);
-  border-radius:24px;
-  padding:22px;
+@keyframes logoMove{
+  0%{background-position:0}
+  100%{background-position:200%}
 }
 
-.menu{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-button{
-  border:none;
-  cursor:pointer;
-  color:white;
-  background:linear-gradient(135deg,#102b61,#32105c);
-  border:1px solid #248dff;
-  border-radius:15px;
+nav{
+  width:min(1100px,94%);
+  margin:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
   padding:15px;
-  font-size:16px;
+  background:rgba(5,12,28,.72);
+  border:1px solid rgba(0,200,255,.2);
+  border-radius:22px;
+  backdrop-filter:blur(12px);
+  box-shadow:0 0 30px rgba(0,170,255,.08);
+}
+
+nav button{
+  border:1px solid rgba(0,210,255,.25);
+  background:rgba(10,25,50,.75);
+  color:#dceeff;
+  padding:11px 15px;
+  border-radius:13px;
+  cursor:pointer;
   transition:.2s;
+  font-size:14px;
 }
 
-button:hover{
-  transform:scale(1.03);
-  box-shadow:0 0 18px #168dff;
+nav button:hover{
+  transform:translateY(-2px) scale(1.02);
+  border-color:#00d9ff;
+  box-shadow:0 0 18px rgba(0,217,255,.3);
+  color:#fff;
 }
 
-section{
+main{
+  width:min(1100px,94%);
+  margin:25px auto 60px;
+}
+
+.section{
   display:none;
-  margin-top:25px;
+  animation:show .35s ease;
 }
 
-section.active{
+.section.active{
   display:block;
 }
 
+@keyframes show{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.panel{
+  background:rgba(5,13,31,.72);
+  border:1px solid rgba(0,210,255,.2);
+  border-radius:25px;
+  padding:25px;
+  margin-bottom:20px;
+  backdrop-filter:blur(12px);
+  box-shadow:
+    0 0 35px rgba(0,100,255,.07),
+    inset 0 0 30px rgba(120,0,255,.025);
+}
+
 h2{
+  color:#00d9ff;
   margin-bottom:18px;
-  color:#65cfff;
-  text-shadow:0 0 10px #008cff;
+  font-size:25px;
 }
 
-.card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(80,180,255,.5);
-  border-radius:18px;
-  padding:18px;
-  margin-bottom:14px;
-}
-
-.game-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.game-card{
-  background:linear-gradient(145deg,rgba(0,130,255,.12),rgba(120,0,255,.12));
-  border:1px solid #405cff;
-  border-radius:18px;
-  padding:20px;
-}
-
-.game-card h3{
+h3{
   margin-bottom:8px;
 }
 
-.search-box{
-  width:100%;
-  padding:16px;
-  border-radius:14px;
-  border:1px solid #258fff;
-  background:#070d20;
-  color:white;
-  font-size:16px;
-  outline:none;
+p{
+  color:#b9c5dc;
+  line-height:1.9;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+}
+
+.card{
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(13,31,62,.8),rgba(8,13,31,.8));
+  border:1px solid rgba(0,200,255,.16);
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,220,255,.6);
+  box-shadow:0 0 22px rgba(0,180,255,.13);
+}
+
+.card .emoji{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:10px;
+  padding:5px 9px;
+  border-radius:8px;
+  font-size:11px;
+  background:rgba(0,180,255,.1);
+  color:#6fe8ff;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:11px 16px;
+  margin:5px;
+  background:linear-gradient(90deg,#0077ff,#783cff);
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 18px rgba(90,100,255,.35);
+}
+
+.btn.secondary{
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+.btn.danger{
+  background:linear-gradient(90deg,#d7263d,#8b1e3f);
+}
+
+.copybox{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.code{
+  direction:ltr;
+  background:#020611;
+  border:1px solid rgba(0,200,255,.2);
+  padding:12px 15px;
+  border-radius:12px;
+  color:#6fe8ff;
+  font-family:monospace;
+}
+
+.searchbox{
+  display:flex;
+  gap:8px;
   margin-bottom:15px;
+}
+
+.searchbox input{
+  flex:1;
+  background:#030914;
+  border:1px solid rgba(0,200,255,.25);
+  color:white;
+  padding:14px;
+  border-radius:13px;
+  outline:none;
+}
+
+.searchbox input:focus{
+  border-color:#00d9ff;
+  box-shadow:0 0 15px rgba(0,217,255,.15);
 }
 
 .result{
   padding:14px;
-  border-radius:12px;
-  background:rgba(255,255,255,.06);
   margin:8px 0;
+  background:rgba(255,255,255,.04);
+  border-radius:13px;
   cursor:pointer;
+  border:1px solid transparent;
 }
 
 .result:hover{
-  background:rgba(0,140,255,.15);
-}
-
-#zombieGame{
-  text-align:center;
-}
-
-.game-screen{
-  position:relative;
-  height:420px;
-  overflow:hidden;
-  border-radius:20px;
-  border:1px solid #258fff;
-  background:
-    radial-gradient(circle at 50% 20%,rgba(0,150,255,.15),transparent 35%),
-    linear-gradient(#050816,#071525);
-  margin-bottom:15px;
-}
-
-.hud{
-  display:flex;
-  justify-content:space-around;
-  flex-wrap:wrap;
-  gap:8px;
-  padding:10px;
-  background:rgba(0,0,0,.35);
-}
-
-.path{
-  position:absolute;
-  top:80px;
-  bottom:40px;
-  right:15%;
-  width:70%;
-  border:2px dashed rgba(0,170,255,.3);
-  border-radius:20px;
-}
-
-.zombie{
-  position:absolute;
-  right:-60px;
-  top:180px;
-  font-size:45px;
-  transition:right .1s linear;
-}
-
-.base{
-  position:absolute;
-  left:15px;
-  top:160px;
-  font-size:50px;
-}
-
-.actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
+  border-color:#00d9ff;
+  background:rgba(0,200,255,.07);
 }
 
 footer{
   text-align:center;
-  color:#9da7c7;
-  padding:25px 5px 10px;
-  font-size:13px;
+  padding:35px 15px;
+  color:#75839f;
+  border-top:1px solid rgba(0,200,255,.1);
 }
 
-@media(max-width:650px){
-  .menu,.game-grid{
-    grid-template-columns:1fr;
-  }
+footer strong{
+  color:#00d9ff;
+}
 
+/* MINI GAMES */
+
+.mini-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+
+.gamebox{
+  min-height:180px;
+  padding:20px;
+  background:rgba(2,9,22,.8);
+  border:1px solid rgba(150,80,255,.18);
+  border-radius:20px;
+}
+
+.gamebox button{
+  margin-top:15px;
+}
+
+.big-number{
+  font-size:50px;
+  color:#00d9ff;
+  text-align:center;
+  margin:15px;
+}
+
+.color-target{
+  width:65px;
+  height:65px;
+  border-radius:50%;
+  border:0;
+  background:#00d9ff;
+  cursor:pointer;
+  display:block;
+  margin:20px auto;
+}
+
+/* ZOMBIE GAME */
+
+.zombie{
+  display:none;
+}
+
+.zombie.active{
+  display:block;
+}
+
+.zhud{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.stat{
+  background:#030914;
+  border:1px solid rgba(0,200,255,.18);
+  padding:10px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.stat span{
+  display:block;
+  color:#00d9ff;
+  font-size:20px;
+  margin-top:3px;
+}
+
+.zgame{
+  position:relative;
+  height:430px;
+  overflow:hidden;
+  border-radius:20px;
+  border:1px solid rgba(0,210,255,.2);
+  background:
+    radial-gradient(circle at 50% 40%,rgba(80,80,150,.08),transparent 35%),
+    linear-gradient(180deg,#030814,#07101b);
+}
+
+.fog{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 60%,rgba(150,150,255,.06),transparent 20%),
+    radial-gradient(circle at 70% 30%,rgba(100,200,255,.05),transparent 25%);
+  pointer-events:none;
+}
+
+.path{
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:14%;
+  width:72%;
+  background:
+    linear-gradient(90deg,transparent 0 8%,rgba(50,70,90,.35) 8% 92%,transparent 92%);
+}
+
+.base{
+  position:absolute;
+  right:3%;
+  top:40%;
+  width:80px;
+  height:80px;
+  border:3px solid #00d9ff;
+  border-radius:15px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  box-shadow:0 0 25px rgba(0,210,255,.25);
+}
+
+.zombieEntity{
+  position:absolute;
+  left:15%;
+  top:42%;
+  font-size:45px;
+  transition:left .1s linear;
+  z-index:3;
+  filter:drop-shadow(0 0 8px rgba(0,255,150,.2));
+}
+
+.bossBar{
+  position:absolute;
+  top:15px;
+  left:15%;
+  width:70%;
+  height:18px;
+  background:#17050a;
+  border:1px solid #ff4d6d;
+  border-radius:20px;
+  overflow:hidden;
+  display:none;
+  z-index:5;
+}
+
+.bossFill{
+  height:100%;
+  width:100%;
+  background:linear-gradient(90deg,#ff1744,#ff7b00);
+}
+
+.zactions{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  padding:12px 0;
+}
+
+.zactions button{
+  min-width:100px;
+}
+
+.zmessage{
+  text-align:center;
+  color:#9fb0cc;
+  min-height:30px;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  z-index:20;
+  background:rgba(1,5,15,.94);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal{
+  max-width:520px;
+  width:100%;
+  background:#071225;
+  border:1px solid rgba(0,210,255,.35);
+  border-radius:25px;
+  padding:25px;
+  text-align:center;
+  box-shadow:0 0 40px rgba(0,150,255,.12);
+}
+
+.modal .enemy{
+  font-size:70px;
+  margin:10px;
+}
+
+.modal h3{
+  color:#00d9ff;
+  font-size:25px;
+}
+
+.shop{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:12px;
+  margin-top:15px;
+}
+
+.shopItem{
+  background:#030914;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:15px;
+  padding:15px;
+}
+
+.shopItem button{
+  width:100%;
+}
+
+.hidden{
+  display:none!important;
+}
+
+@media(max-width:600px){
   .logo{
-    font-size:38px;
+    font-size:36px;
   }
 
-  body{
-    padding:10px;
+  nav{
+    gap:7px;
+  }
+
+  nav button{
+    padding:9px 10px;
+    font-size:12px;
+  }
+
+  .panel{
+    padding:17px;
+  }
+
+  .zhud{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .zgame{
+    height:350px;
+  }
+
+  .path{
+    left:8%;
+    width:84%;
+  }
+
+  .zombieEntity{
+    left:9%;
+  }
+
+  .bossBar{
+    left:8%;
+    width:84%;
   }
 }
 </style>
@@ -229,401 +531,1817 @@ footer{
 
 <body>
 
-<div class="container">
-
 <header>
   <div class="logo">NEXORA</div>
   <div class="subtitle">Gaming • Technology • Creativity</div>
 </header>
 
-<div class="panel">
-
-<div class="menu">
-  <button onclick="showSection('games')">🎮 بازی‌های مورد علاقه من</button>
+<nav>
+  <button onclick="showSection('games')">🎮 بازی‌های مورد علاقه</button>
   <button onclick="showSection('videos')">🎬 ویدیوهای من</button>
-  <button onclick="showSection('roblox')">👤 نام کاربری روبلاکس</button>
+  <button onclick="showSection('roblox')">👤 روبلاکس</button>
   <button onclick="showSection('minecraft')">⛏️ سرور ماینکرفت</button>
   <button onclick="showSection('mygame')">🎮 بازی من</button>
   <button onclick="showSection('search')">🔎 جستجو</button>
-  <button onclick="showSection('miniGames')">🕹️ بازی‌های NEXORA</button>
-</div>
+  <button onclick="showSection('minigames')">🕹️ بازی‌های NEXORA</button>
+</nav>
 
-<section id="games">
-<h2>🎮 بازی‌های مورد علاقه من</h2>
+<main>
 
-<div class="game-grid">
+<!-- GAMES -->
 
-<div class="game-card">
-<h3>🎯 Call of Duty Mobile</h3>
-<p>بازی مورد علاقه من برای موبایل.</p>
-</div>
+<section id="games" class="section active">
+  <div class="panel">
+    <h2>🎮 بازی‌های مورد علاقه من</h2>
 
-<div class="game-card">
-<h3>🎮 Roblox</h3>
-<p>💻 برای کامپیوتر</p>
-</div>
+    <div class="cards">
 
-<div class="game-card">
-<h3>⛏️ Minecraft</h3>
-<p>💻 برای کامپیوتر</p>
-</div>
+      <div class="card">
+        <div class="emoji">🎯</div>
+        <h3>Call of Duty Mobile</h3>
+        <p>یکی از بازی‌های مورد علاقه من برای مبارزه و رقابت.</p>
+      </div>
 
-<div class="game-card">
-<h3>🚗 GTA San Andreas</h3>
-<p>💻 برای کامپیوتر</p>
-</div>
+      <div class="card">
+        <div class="emoji">🎮</div>
+        <h3>Roblox</h3>
+        <p>دنیایی از بازی‌های مختلف و تجربه‌های متفاوت.</p>
+        <span class="badge">💻 برای کامپیوتر</span>
+      </div>
 
-<div class="game-card">
-<h3>🔫 Counter-Strike</h3>
-<p>💻 برای کامپیوتر</p>
-</div>
+      <div class="card">
+        <div class="emoji">⛏️</div>
+        <h3>Minecraft</h3>
+        <p>ساخت‌وساز، بقا و ماجراجویی.</p>
+        <span class="badge">💻 برای کامپیوتر</span>
+      </div>
 
-</div>
+      <div class="card">
+        <div class="emoji">🚗</div>
+        <h3>GTA San Andreas</h3>
+        <p>یکی از بازی‌های کلاسیک و محبوب.</p>
+        <span class="badge">💻 برای کامپیوتر</span>
+      </div>
+
+      <div class="card">
+        <div class="emoji">🔫</div>
+        <h3>Counter-Strike</h3>
+        <p>بازی تیراندازی و رقابت تیمی.</p>
+        <span class="badge">💻 برای کامپیوتر</span>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<section id="videos">
-<h2>🎬 ویدیوهای من</h2>
-<div class="card">
-<p>ویدیوهای من در آپارات:</p>
-<br>
-<button onclick="window.open('https://www.aparat.com/MHZIAR_stream','_blank')">
-مشاهده کانال آپارات
-</button>
-</div>
+
+<!-- VIDEOS -->
+
+<section id="videos" class="section">
+  <div class="panel">
+    <h2>🎬 ویدیوهای من</h2>
+
+    <div class="card">
+      <div class="emoji">📺</div>
+      <h3>کانال آپارات MHZIAR_stream</h3>
+      <p>
+        ویدیوهای گیمینگ و محتوای مختلف من را در کانال آپارات ببین.
+      </p>
+
+      <button class="btn" onclick="window.open('https://www.aparat.com/MHZIAR_stream','_blank')">
+        🎬 ورود به کانال
+      </button>
+    </div>
+  </div>
 </section>
 
-<section id="roblox">
-<h2>👤 نام کاربری روبلاکس</h2>
-<div class="card">
-<p>نام کاربری:</p>
-<h3>Asadi_325</h3>
-<br>
-<button onclick="copyText('Asadi_325')">📋 کپی نام کاربری</button>
-</div>
+
+<!-- ROBLOX -->
+
+<section id="roblox" class="section">
+  <div class="panel">
+    <h2>👤 نام کاربری روبلاکس</h2>
+
+    <div class="copybox">
+      <div class="code" id="robloxName">Asadi_325</div>
+      <button class="btn" onclick="copyText('Asadi_325')">
+        📋 کپی
+      </button>
+    </div>
+  </div>
 </section>
 
-<section id="minecraft">
-<h2>⛏️ سرور ماینکرفت</h2>
-<div class="card">
-<h3>🚧 سرور در دست ساخت است</h3>
-<p>به‌زودی اطلاعات سرور اینجا قرار می‌گیرد.</p>
-</div>
+
+<!-- MINECRAFT -->
+
+<section id="minecraft" class="section">
+  <div class="panel">
+    <h2>⛏️ سرور ماینکرفت</h2>
+
+    <div class="card">
+      <div class="emoji">🚧</div>
+      <h3>سرور در دست ساخت است</h3>
+      <p>
+        به‌زودی اطلاعات سرور، آدرس اتصال و امکانات آن در این قسمت قرار می‌گیرد.
+      </p>
+    </div>
+  </div>
 </section>
 
-<section id="mygame">
-<h2>🎮 بازی من</h2>
-<div class="card">
-<h3>🚧 بازی در دست ساخت است</h3>
-<p>به‌زودی اطلاعات بازی و لینک دریافت آن اضافه می‌شود.</p>
-</div>
+
+<!-- MY GAME -->
+
+<section id="mygame" class="section">
+  <div class="panel">
+    <h2>🎮 بازی من</h2>
+
+    <div class="card">
+      <div class="emoji">🚧</div>
+      <h3>بازی در دست ساخت است</h3>
+      <p>
+        بازی ساخته‌شده توسط من به‌زودی در NEXORA قرار می‌گیرد.
+      </p>
+    </div>
+  </div>
 </section>
 
-<section id="search">
-<h2>🔎 جستجوی NEXORA</h2>
 
-<input
-class="search-box"
-id="searchInput"
-placeholder="اسم بازی یا چیزی که می‌خواهید پیدا کنید..."
-oninput="searchSite()"
->
+<!-- SEARCH -->
 
-<div id="searchResults"></div>
+<section id="search" class="section">
+  <div class="panel">
+    <h2>🔎 جستجوی NEXORA</h2>
+
+    <div class="searchbox">
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="مثلاً Minecraft، ماینکرفت، Roblox..."
+        oninput="searchSite()"
+      >
+
+      <button class="btn secondary" onclick="clearSearch()">
+        ✖ پاک کردن
+      </button>
+    </div>
+
+    <div id="searchResults"></div>
+  </div>
 </section>
 
-<section id="miniGames">
-<h2>🕹️ بازی‌های NEXORA</h2>
 
-<div class="game-grid">
+<!-- MINI GAMES -->
 
-<div class="game-card">
-<h3>⚡ Reaction Test</h3>
-<p>سرعت واکنش خودت رو امتحان کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+<section id="minigames" class="section">
 
-<div class="game-card">
-<h3>🎯 هدف‌گیری</h3>
-<p>هدف‌ها رو سریع پیدا کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+  <div class="panel">
+    <h2>🕹️ بازی‌های NEXORA</h2>
 
-<div class="game-card">
-<h3>🧠 حافظه</h3>
-<p>حافظه‌ات رو امتحان کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+    <div class="mini-grid">
 
-<div class="game-card">
-<h3>❌⭕ دوز</h3>
-<p>مقابل کامپیوتر بازی کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+      <!-- Reaction -->
 
-<div class="game-card">
-<h3>🔢 حدس عدد</h3>
-<p>عدد مخفی رو پیدا کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+      <div class="gamebox">
+        <h3>⚡ تست سرعت واکنش</h3>
+        <p id="reactionText">
+          وقتی دکمه سبز شد، سریع کلیک کن!
+        </p>
 
-<div class="game-card">
-<h3>🪨📄✂️ سنگ، کاغذ، قیچی</h3>
-<p>مقابل کامپیوتر بازی کن.</p>
-<button onclick="alert('این بازی به‌زودی فعال می‌شود!')">▶️ بازی</button>
-</div>
+        <button class="btn" onclick="reactionStart()">
+          شروع
+        </button>
 
-<div class="game-card">
-<h3>🧟 Zombie Defense</h3>
-<p>جلوی عبور زامبی‌ها رو بگیر!</p>
-<button onclick="startZombieGame()">▶️ شروع بازی</button>
-</div>
+        <button
+          id="reactionButton"
+          class="btn secondary hidden"
+          onclick="reactionClick()">
+          🟢 کلیک!
+        </button>
+      </div>
 
-</div>
+
+      <!-- Guess -->
+
+      <div class="gamebox">
+        <h3>🔢 حدس عدد</h3>
+
+        <p>
+          یک عدد بین 1 تا 20 حدس بزن.
+        </p>
+
+        <input
+          id="guessInput"
+          type="number"
+          min="1"
+          max="20"
+          style="width:100%;padding:10px;border-radius:10px;border:1px solid #16415c;background:#020812;color:white;margin-top:10px"
+        >
+
+        <button class="btn" onclick="guessNumber()">
+          حدس بزن
+        </button>
+
+        <p id="guessResult"></p>
+      </div>
+
+
+      <!-- Tic Tac Toe -->
+
+      <div class="gamebox">
+        <h3>❌⭕ دوز</h3>
+
+        <div
+          id="tttBoard"
+          style="
+          display:grid;
+          grid-template-columns:repeat(3,1fr);
+          gap:5px;
+          max-width:180px;
+          margin:15px auto">
+        </div>
+
+        <p id="tttStatus"></p>
+
+        <button class="btn secondary" onclick="resetTTT()">
+          🔄 دوباره
+        </button>
+      </div>
+
+
+      <!-- RPS -->
+
+      <div class="gamebox">
+        <h3>🪨📄✂️ سنگ کاغذ قیچی</h3>
+
+        <button class="btn" onclick="rps('rock')">🪨</button>
+        <button class="btn" onclick="rps('paper')">📄</button>
+        <button class="btn" onclick="rps('scissors')">✂️</button>
+
+        <p id="rpsResult"></p>
+      </div>
+
+
+      <!-- Memory -->
+
+      <div class="gamebox">
+        <h3>🧠 حافظه</h3>
+
+        <p>
+          ترتیب چهار عدد را به خاطر بسپار.
+        </p>
+
+        <div
+          id="memoryNumber"
+          class="big-number">
+          ?
+        </div>
+
+        <button class="btn" onclick="memoryStart()">
+          شروع
+        </button>
+
+        <input
+          id="memoryInput"
+          placeholder="اعداد را وارد کن"
+          style="width:100%;padding:10px;border-radius:10px;background:#020812;color:white;border:1px solid #16415c"
+        >
+
+        <button class="btn" onclick="memoryCheck()">
+          بررسی
+        </button>
+
+        <p id="memoryResult"></p>
+      </div>
+
+
+      <!-- Target -->
+
+      <div class="gamebox">
+        <h3>🎯 هدف‌گیری</h3>
+
+        <p>
+          هدف را سریع بزن!
+        </p>
+
+        <div
+          id="targetArea"
+          style="
+          height:100px;
+          position:relative;
+          background:#020812;
+          border-radius:12px;
+          margin-top:10px">
+        </div>
+
+        <button class="btn" onclick="targetStart()">
+          شروع
+        </button>
+
+        <p id="targetScore"></p>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ZOMBIE -->
+
+  <div class="panel">
+    <h2>🧟 NEXORA Zombie Defense</h2>
+
+    <div id="zombieGame" class="zombie">
+
+      <div class="zhud">
+
+        <div class="stat">
+          ❤️ جان
+          <span id="zHealth">100</span>
+        </div>
+
+        <div class="stat">
+          💰 سکه
+          <span id="zCoins">0</span>
+        </div>
+
+        <div class="stat">
+          🎯 مرحله
+          <span id="zStage">1</span>
+        </div>
+
+        <div class="stat">
+          🔫 قدرت
+          <span id="zPower">10</span>
+        </div>
+
+      </div>
+
+
+      <div class="zgame">
+
+        <div class="fog"></div>
+        <div class="path"></div>
+
+        <div class="bossBar" id="bossBar">
+          <div class="bossFill" id="bossFill"></div>
+        </div>
+
+        <div class="zombieEntity" id="zombieEntity">
+          🧟
+        </div>
+
+        <div class="base">
+          🏠
+        </div>
+
+        <div id="zOverlay" class="overlay">
+
+          <div class="modal">
+
+            <div class="enemy">🧟</div>
+
+            <h3 id="modalTitle">
+              NEXORA Zombie Defense
+            </h3>
+
+            <p id="modalText">
+              از پایگاه خود در برابر زامبی‌ها دفاع کن!
+            </p>
+
+            <button
+              id="modalButton"
+              class="btn"
+              onclick="modalAction()">
+              ▶️ شروع بازی
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="zmessage" id="zMessage">
+        برای شروع بازی دکمه شروع را بزن.
+      </div>
+
+
+      <div class="zactions">
+
+        <button class="btn" onclick="shootZombie()">
+          🔫 شلیک
+        </button>
+
+        <button class="btn" onclick="freezeZombie()">
+          🧪 انجماد
+        </button>
+
+        <button class="btn" onclick="useShield()">
+          🛡️ سپر
+        </button>
+
+        <button class="btn" onclick="useHealth()">
+          ❤️ کیت سلامتی
+        </button>
+
+        <button class="btn secondary" onclick="pauseZombieGame()">
+          ⏸️ توقف
+        </button>
+
+        <button class="btn secondary" onclick="openZombieShop()">
+          🛒 فروشگاه
+        </button>
+
+      </div>
+
+
+      <div id="zShop" class="panel hidden">
+
+        <h3>🛒 فروشگاه NEXORA</h3>
+
+        <p>
+          خریدها با سکه داخل بازی انجام می‌شوند.
+        </p>
+
+        <div class="shop">
+
+          <div class="shopItem">
+            <h3>🔫 ارتقای اسلحه</h3>
+            <p>قدرت +5</p>
+            <p>💰 50 سکه</p>
+            <button class="btn" onclick="buyGun()">
+              خرید
+            </button>
+          </div>
+
+          <div class="shopItem">
+            <h3>❤️ کیت سلامتی</h3>
+            <p>جان +25</p>
+            <p>💰 30 سکه</p>
+            <button class="btn" onclick="buyHealth()">
+              خرید
+            </button>
+          </div>
+
+          <div class="shopItem">
+            <h3>🧪 انجماد</h3>
+            <p>یک بار انجماد قوی</p>
+            <p>💰 40 سکه</p>
+            <button class="btn" onclick="buyFreeze()">
+              خرید
+            </button>
+          </div>
+
+          <div class="shopItem">
+            <h3>🛡️ سپر</h3>
+            <p>محافظت در برابر یک ضربه</p>
+            <p>💰 60 سکه</p>
+            <button class="btn" onclick="buyShield()">
+              خرید
+            </button>
+          </div>
+
+        </div>
+
+        <button
+          class="btn secondary"
+          onclick="closeZombieShop()">
+          ✖ بستن فروشگاه
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div id="zombieMenu">
+
+      <div class="card">
+
+        <h3>🧟 حالت دفاع از پایگاه</h3>
+
+        <p>
+          زامبی‌ها از مسیر عبور می‌کنند.
+          قبل از رسیدن آنها به پایگاه، متوقفشان کن.
+        </p>
+
+        <p style="margin-top:10px">
+          هر ۱۰ مرحله یک باس قدرتمند ظاهر می‌شود.
+        </p>
+
+        <button class="btn" onclick="startZombieGame()">
+          ▶️ ورود به بازی
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </section>
 
-<section id="zombieGame">
-<h2>🧟 NEXORA Zombie Defense</h2>
+</main>
 
-<div class="game-screen">
-
-<div class="hud">
-<span>❤️ جان: <b id="health">100</b></span>
-<span>💰 سکه: <b id="coins">0</b></span>
-<span>🎯 مرحله: <b id="level">1</b></span>
-</div>
-
-<div class="path"></div>
-
-<div class="base">🏠</div>
-
-<div id="zombie" class="zombie">🧟</div>
-
-</div>
-
-<div class="actions">
-<button onclick="shootZombie()">🔫 شلیک</button>
-<button onclick="freezeZombie()">🧪 فریز</button>
-<button onclick="pauseZombieGame()">⏸️ توقف</button>
-<button onclick="openShop()">🛒 فروشگاه</button>
-</div>
-
-<br>
-
-<button onclick="showSection('miniGames')">⬅️ برگشت به بازی‌ها</button>
-
-</section>
 
 <footer>
-© 2026 NEXORA<br>
-🎮 ساخته‌شده با علاقه به بازی و تکنولوژی<br>
-Aparat: MHZIAR_stream<br><br>
-به دلیل مشکلات مربوط به نام، لینک سایت همچنان با نام MHZIAR نمایش داده می‌شود. معذرت می‌خواهم 🙏
+
+  <strong>NEXORA</strong>
+
+  <p>
+    🎮 ساخته‌شده با علاقه به بازی و تکنولوژی
+  </p>
+
+  <p>
+    Aparat: MHZIAR_stream
+  </p>
+
+  <p>
+    © 2026 NEXORA
+  </p>
+
+  <p>
+    به دلیل مشکلات مربوط به نام، لینک سایت همچنان با نام MHZIAR نمایش داده می‌شود. معذرت می‌خواهم 🙏
+  </p>
+
 </footer>
 
-</div>
-</div>
 
 <script>
 
-const searchData = [
-  {name:"🎯 Call of Duty Mobile",key:"cod کالاف کال اف بازی",section:"games"},
-  {name:"🎮 Roblox",key:"roblox روبلاکس بازی",section:"games"},
-  {name:"⛏️ Minecraft",key:"minecraft ماینکرفت ماینکرافت بازی سرور",section:"minecraft"},
-  {name:"🚗 GTA San Andreas",key:"gta سن اندرس بازی",section:"games"},
-  {name:"🔫 Counter-Strike",key:"counter strike کانتر استرایک بازی",section:"games"},
-  {name:"🎬 ویدیوهای من",key:"video ویدیو آپارات",section:"videos"},
-  {name:"👤 نام کاربری Roblox",key:"username نام کاربری روبلاکس",section:"roblox"},
-  {name:"🎮 بازی من",key:"بازی من پروژه",section:"mygame"},
-  {name:"🧟 Zombie Defense",key:"zombie زامبی زامبی دیفنس بازی",section:"miniGames"}
-];
+/* =========================
+   NAVIGATION
+========================= */
 
 function showSection(id){
 
-  document.querySelectorAll("section").forEach(s=>{
-    s.classList.remove("active");
-  });
+  document.querySelectorAll('.section')
+    .forEach(s => s.classList.remove('active'));
 
-  document.getElementById(id).classList.add("active");
+  const section = document.getElementById(id);
 
-  window.scrollTo({
-    top:document.getElementById(id).offsetTop-20,
-    behavior:"smooth"
-  });
+  if(section){
+    section.classList.add('active');
+    window.scrollTo({
+      top:0,
+      behavior:'smooth'
+    });
+  }
 }
+
+
+/* =========================
+   COPY
+========================= */
 
 function copyText(text){
-  navigator.clipboard.writeText(text);
-  alert("کپی شد ✅");
+
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      alert('کپی شد ✅');
+    })
+    .catch(() => {
+      alert('کپی انجام نشد');
+    });
 }
+
+
+/* =========================
+   SEARCH
+========================= */
+
+const searchData = [
+
+  {
+    title:'🎯 Call of Duty Mobile',
+    keywords:'call of duty cod کالاف کال آف دیوتی',
+    section:'games'
+  },
+
+  {
+    title:'🎮 Roblox',
+    keywords:'roblox روبلاکس asadi_325',
+    section:'roblox'
+  },
+
+  {
+    title:'⛏️ Minecraft',
+    keywords:'minecraft ماینکرفت ماینکرافت ماین کرافت',
+    section:'minecraft'
+  },
+
+  {
+    title:'🚗 GTA San Andreas',
+    keywords:'gta grand theft auto san andreas جی تی ای سن اندرس',
+    section:'games'
+  },
+
+  {
+    title:'🔫 Counter-Strike',
+    keywords:'counter strike cs کانتر کانتر استرایک',
+    section:'games'
+  },
+
+  {
+    title:'🎬 ویدیوهای من',
+    keywords:'video videos ویدیو ویدیوها آپارات aparat',
+    section:'videos'
+  },
+
+  {
+    title:'🧟 Zombie Defense',
+    keywords:'zombie زامبی دفاع بازی بازی زامبی',
+    section:'minigames'
+  },
+
+  {
+    title:'🕹️ بازی‌های NEXORA',
+    keywords:'games mini game بازی کوچک',
+    section:'minigames'
+  }
+
+];
+
 
 function searchSite(){
 
   const input =
-    document.getElementById("searchInput")
-    .value
-    .trim()
-    .toLowerCase();
+    document.getElementById('searchInput');
 
   const results =
-    document.getElementById("searchResults");
+    document.getElementById('searchResults');
 
-  if(!input){
-    results.innerHTML="";
+  const q =
+    input.value.trim().toLowerCase();
+
+  if(!q){
+
+    results.innerHTML =
+      '<p>برای جستجو چیزی بنویس 👆</p>';
+
     return;
   }
 
-  const found = searchData.filter(item =>
-    (item.name+" "+item.key)
-    .toLowerCase()
-    .includes(input)
-  );
+  const found =
+    searchData.filter(item =>
+      (item.title + ' ' + item.keywords)
+      .toLowerCase()
+      .includes(q)
+    );
 
-  if(found.length===0){
-    results.innerHTML=
-      "<div class='card'>😕 چیزی پیدا نشد</div>";
+  if(found.length === 0){
+
+    results.innerHTML =
+      '<div class="card">❌ نتیجه‌ای پیدا نشد.</div>';
+
     return;
   }
 
-  results.innerHTML=found.map(item=>`
-    <div class="result" onclick="showSection('${item.section}')">
-      ${item.name}
-    </div>
-  `).join("");
+  results.innerHTML =
+    found.map(item => `
+      <div class="result"
+           onclick="showSection('${item.section}')">
+        ${item.title}
+      </div>
+    `).join('');
+
 }
 
 
-/* Zombie Defense */
+function clearSearch(){
 
-let health=100;
-let coins=0;
-let level=1;
-let zombiePosition=-60;
-let zombieTimer=null;
-let paused=false;
+  document.getElementById('searchInput').value='';
+
+  document.getElementById('searchResults').innerHTML =
+    '<p>برای جستجو چیزی بنویس 👆</p>';
+}
+
+
+/* =========================
+   REACTION GAME
+========================= */
+
+let reactionReady=false;
+let reactionStartTime=0;
+let reactionTimer=null;
+
+function reactionStart(){
+
+  const text =
+    document.getElementById('reactionText');
+
+  const btn =
+    document.getElementById('reactionButton');
+
+  reactionReady=false;
+
+  btn.classList.add('hidden');
+
+  text.textContent =
+    'صبر کن... هنوز کلیک نکن!';
+
+  const delay =
+    1000 + Math.random()*3000;
+
+  reactionTimer=setTimeout(() => {
+
+    reactionReady=true;
+    reactionStartTime=Date.now();
+
+    text.textContent =
+      '🟢 الان!';
+
+    btn.classList.remove('hidden');
+
+  },delay);
+}
+
+
+function reactionClick(){
+
+  if(!reactionReady){
+
+    clearTimeout(reactionTimer);
+
+    document.getElementById('reactionText').textContent =
+      'زود زدی 😅 دوباره امتحان کن.';
+
+    document.getElementById('reactionButton')
+      .classList.add('hidden');
+
+    return;
+  }
+
+  const time =
+    Date.now()-reactionStartTime;
+
+  document.getElementById('reactionText').textContent =
+    '⚡ زمان واکنش: '+time+' میلی‌ثانیه';
+
+  document.getElementById('reactionButton')
+    .classList.add('hidden');
+
+  reactionReady=false;
+}
+
+
+/* =========================
+   GUESS NUMBER
+========================= */
+
+let secretNumber =
+  Math.floor(Math.random()*20)+1;
+
+function guessNumber(){
+
+  const value =
+    Number(document.getElementById('guessInput').value);
+
+  const result =
+    document.getElementById('guessResult');
+
+  if(!value){
+    result.textContent='یک عدد وارد کن.';
+    return;
+  }
+
+  if(value === secretNumber){
+
+    result.textContent =
+      '🎉 درست حدس زدی! عدد جدید ساخته شد.';
+
+    secretNumber =
+      Math.floor(Math.random()*20)+1;
+
+  }else if(value < secretNumber){
+
+    result.textContent='⬆️ عدد بزرگ‌تره.';
+
+  }else{
+
+    result.textContent='⬇️ عدد کوچک‌تره.';
+  }
+}
+
+
+/* =========================
+   TIC TAC TOE
+========================= */
+
+let ttt =
+  ['','','','','','','','',''];
+
+let tttTurn='X';
+let tttOver=false;
+
+function renderTTT(){
+
+  const board =
+    document.getElementById('tttBoard');
+
+  board.innerHTML='';
+
+  ttt.forEach((v,i)=>{
+
+    const b =
+      document.createElement('button');
+
+    b.textContent=v;
+
+    b.style.height='55px';
+    b.style.fontSize='24px';
+    b.style.background='#071225';
+    b.style.color='#fff';
+    b.style.border='1px solid #16415c';
+    b.style.borderRadius='8px';
+
+    b.onclick=()=>tttMove(i);
+
+    board.appendChild(b);
+  });
+
+  document.getElementById('tttStatus').textContent =
+    tttOver ? 'بازی تمام شد.' :
+    'نوبت: '+tttTurn;
+}
+
+
+function tttMove(i){
+
+  if(ttt[i] || tttOver) return;
+
+  ttt[i]=tttTurn;
+
+  if(checkTTT(tttTurn)){
+
+    tttOver=true;
+
+    document.getElementById('tttStatus').textContent =
+      '🎉 '+tttTurn+' برنده شد!';
+
+    renderTTT();
+
+    return;
+  }
+
+  if(ttt.every(Boolean)){
+
+    tttOver=true;
+
+    document.getElementById('tttStatus').textContent =
+      '🤝 مساوی شد!';
+
+    renderTTT();
+
+    return;
+  }
+
+  tttTurn =
+    tttTurn==='X' ? 'O':'X';
+
+  renderTTT();
+}
+
+
+function checkTTT(p){
+
+  const wins=[
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+  ];
+
+  return wins.some(w =>
+    w.every(i=>ttt[i]===p)
+  );
+}
+
+
+function resetTTT(){
+
+  ttt=
+    ['','','','','','','','',''];
+
+  tttTurn='X';
+  tttOver=false;
+
+  renderTTT();
+}
+
+renderTTT();
+
+
+/* =========================
+   ROCK PAPER SCISSORS
+========================= */
+
+function rps(player){
+
+  const choices =
+    ['rock','paper','scissors'];
+
+  const computer =
+    choices[Math.floor(Math.random()*3)];
+
+  let result='';
+
+  if(player===computer){
+
+    result='🤝 مساوی!';
+
+  }else if(
+    (player==='rock' && computer==='scissors') ||
+    (player==='paper' && computer==='rock') ||
+    (player==='scissors' && computer==='paper')
+  ){
+
+    result='🎉 تو بردی!';
+
+  }else{
+
+    result='😅 کامپیوتر برد.';
+  }
+
+  document.getElementById('rpsResult').textContent =
+    result;
+}
+
+
+/* =========================
+   MEMORY
+========================= */
+
+let memoryValue='';
+
+function memoryStart(){
+
+  memoryValue =
+    String(Math.floor(1000+Math.random()*9000));
+
+  document.getElementById('memoryNumber')
+    .textContent=memoryValue;
+
+  document.getElementById('memoryResult')
+    .textContent='عدد را حفظ کن...';
+
+  setTimeout(()=>{
+
+    document.getElementById('memoryNumber')
+      .textContent='????';
+
+  },1500);
+}
+
+
+function memoryCheck(){
+
+  const value =
+    document.getElementById('memoryInput').value;
+
+  if(value===memoryValue){
+
+    document.getElementById('memoryResult')
+      .textContent='🧠 عالی! درست بود.';
+
+  }else{
+
+    document.getElementById('memoryResult')
+      .textContent='❌ اشتباه بود.';
+  }
+}
+
+
+/* =========================
+   TARGET GAME
+========================= */
+
+let targetScoreValue=0;
+
+function targetStart(){
+
+  targetScoreValue=0;
+
+  document.getElementById('targetScore')
+    .textContent='امتیاز: 0';
+
+  spawnTarget();
+}
+
+
+function spawnTarget(){
+
+  const area =
+    document.getElementById('targetArea');
+
+  area.innerHTML='';
+
+  const target =
+    document.createElement('button');
+
+  target.textContent='🎯';
+
+  target.style.position='absolute';
+  target.style.border='0';
+  target.style.background='transparent';
+  target.style.fontSize='30px';
+  target.style.cursor='pointer';
+
+  target.style.left =
+    Math.random()*80+'%';
+
+  target.style.top =
+    Math.random()*65+'%';
+
+  target.onclick=()=>{
+
+    targetScoreValue++;
+
+    document.getElementById('targetScore')
+      .textContent='امتیاز: '+targetScoreValue;
+
+    spawnTarget();
+  };
+
+  area.appendChild(target);
+}
+
+
+/* =========================
+   ZOMBIE DEFENSE
+========================= */
+
+let zHealth=100;
+let zCoins=0;
+let zStage=1;
+let zPower=10;
+
+let zRunning=false;
+let zPaused=false;
+let zFrozen=false;
+let zShield=false;
+
+let zX=15;
+let zSpeed=0.12;
+
+let zTimer=null;
+
+let boss=false;
+let bossHealth=100;
+let currentZombie=null;
+
+let purchasedHealth=0;
+let purchasedFreeze=0;
+let purchasedShield=0;
+
+const zombieTypes=[
+
+  {
+    name:'زامبی معمولی',
+    emoji:'🧟',
+    speed:0.12,
+    resistance:1,
+    feature:'بدون ویژگی خاص؛ دشمن پایه.'
+  },
+
+  {
+    name:'زامبی سریع',
+    emoji:'🏃🧟',
+    speed:0.22,
+    resistance:1,
+    feature:'سرعت بیشتری دارد.'
+  },
+
+  {
+    name:'زامبی مقاوم',
+    emoji:'🛡️🧟',
+    speed:0.09,
+    resistance:2,
+    feature:'در برابر شلیک‌ها مقاوم‌تر است.'
+  },
+
+  {
+    name:'زامبی یخی',
+    emoji:'🥶🧟',
+    speed:0.13,
+    resistance:1,
+    feature:'حرکتش آهسته‌تر اما جان بیشتری دارد.'
+  }
+
+];
+
+
+let seenZombies =
+  JSON.parse(localStorage.getItem('nexoraSeenZombies') || '[]');
+
+
+function saveZombieData(){
+
+  localStorage.setItem(
+    'nexoraZombieBest',
+    Math.max(
+      Number(localStorage.getItem('nexoraZombieBest')||0),
+      zStage
+    )
+  );
+}
+
 
 function startZombieGame(){
 
-  showSection("zombieGame");
+  document.getElementById('zombieMenu')
+    .classList.add('hidden');
 
-  health=100;
-  coins=0;
-  level=1;
-  zombiePosition=-60;
+  document.getElementById('zombieGame')
+    .classList.add('active');
 
-  updateZombieUI();
+  zHealth=100;
+  zCoins=0;
+  zStage=1;
+  zPower=10;
 
-  clearInterval(zombieTimer);
+  purchasedHealth=0;
+  purchasedFreeze=0;
+  purchasedShield=0;
 
-  zombieTimer=setInterval(moveZombie,120);
+  zRunning=false;
+  zPaused=false;
+  zFrozen=false;
+  zShield=false;
+
+  updateZombieHUD();
+
+  showZombieIntro();
+
 }
+
+
+function updateZombieHUD(){
+
+  document.getElementById('zHealth')
+    .textContent=zHealth;
+
+  document.getElementById('zCoins')
+    .textContent=zCoins;
+
+  document.getElementById('zStage')
+    .textContent=zStage;
+
+  document.getElementById('zPower')
+    .textContent=zPower;
+}
+
+
+function showZombieIntro(){
+
+  const type =
+    zombieTypes[Math.min(
+      Math.floor((zStage-1)/3),
+      zombieTypes.length-1
+    )];
+
+  currentZombie=type;
+
+  const overlay =
+    document.getElementById('zOverlay');
+
+  overlay.classList.remove('hidden');
+
+  document.getElementById('modalTitle')
+    .textContent='مرحله '+zStage;
+
+  document.getElementById('modalText')
+    .textContent=
+      '🧟 '+type.name+
+      ' | سرعت: '+type.speed+
+      ' | مقاومت: '+type.resistance+
+      ' | '+type.feature;
+
+  document.querySelector('.enemy')
+    .textContent=type.emoji;
+
+  document.getElementById('modalButton')
+    .textContent='▶️ شروع مرحله';
+
+  zRunning=false;
+}
+
+
+function modalAction(){
+
+  const button =
+    document.getElementById('modalButton')
+      .textContent;
+
+  if(button.includes('باس')){
+
+    startBoss();
+
+  }else if(button.includes('شروع')){
+
+    startStage();
+
+  }else{
+
+    startStage();
+  }
+}
+
+
+function startStage(){
+
+  document.getElementById('zOverlay')
+    .classList.add('hidden');
+
+  if(zStage % 10 === 0){
+
+    showBossIntro();
+
+    return;
+  }
+
+  zRunning=true;
+  zPaused=false;
+  zFrozen=false;
+
+  zX=15;
+
+  const entity =
+    document.getElementById('zombieEntity');
+
+  entity.textContent=currentZombie.emoji;
+  entity.style.left=zX+'%';
+
+  document.getElementById('zMessage')
+    .textContent=
+      'مرحله '+zStage+' شروع شد!';
+
+  clearInterval(zTimer);
+
+  zTimer=setInterval(moveZombie,100);
+}
+
 
 function moveZombie(){
 
-  if(paused) return;
+  if(!zRunning || zPaused || zFrozen)
+    return;
 
-  zombiePosition+=3;
+  zX += currentZombie.speed;
 
-  const zombie=document.getElementById("zombie");
+  const entity =
+    document.getElementById('zombieEntity');
 
-  zombie.style.right=zombiePosition+"px";
+  entity.style.left=zX+'%';
 
-  if(zombiePosition>430){
+  if(zX>=82){
 
-    health-=10;
-    coins+=5;
+    zombieReachedBase();
 
-    zombiePosition=-60;
+  }
+}
 
-    if(health<=0){
 
-      clearInterval(zombieTimer);
+function zombieReachedBase(){
 
-      alert("💀 بازی تمام شد!\nامتیاز سکه: "+coins);
+  zRunning=false;
+
+  clearInterval(zTimer);
+
+  if(zShield){
+
+    zShield=false;
+
+    document.getElementById('zMessage')
+      .textContent=
+      '🛡️ سپر ضربه را گرفت!';
+
+  }else{
+
+    zHealth-=10;
+
+    document.getElementById('zMessage')
+      .textContent=
+      '⚠️ زامبی به پایگاه رسید! -10 جان';
+
+  }
+
+  zCoins+=5;
+
+  updateZombieHUD();
+
+  if(zHealth<=0){
+
+    gameOverZombie();
+
+    return;
+  }
+
+  nextStage();
+}
+
+
+function shootZombie(){
+
+  if(!zRunning || zPaused)
+    return;
+
+  let damage =
+    zPower;
+
+  if(currentZombie.resistance>1)
+    damage =
+      Math.max(1,Math.floor(damage/currentZombie.resistance));
+
+  if(boss){
+
+    bossHealth-=damage;
+
+    updateBossBar();
+
+    if(bossHealth<=0){
+
+      bossDefeated();
+
+    }
+
+    return;
+  }
+
+  zRunning=false;
+
+  clearInterval(zTimer);
+
+  zCoins+=10;
+
+  document.getElementById('zMessage')
+    .textContent=
+      '🎯 زامبی متوقف شد! +10 سکه';
+
+  updateZombieHUD();
+
+  nextStage();
+}
+
+
+function nextStage(){
+
+  setTimeout(()=>{
+
+    if(zHealth<=0)
+      return;
+
+    zStage++;
+
+    updateZombieHUD();
+
+    if(zStage % 10 === 0){
+
+      showBossIntro();
+
+    }else{
+
+      currentZombie =
+        zombieTypes[Math.min(
+          Math.floor((zStage-1)/3),
+          zombieTypes.length-1
+        )];
+
+      if(!seenZombies.includes(currentZombie.name)){
+
+        seenZombies.push(currentZombie.name);
+
+        localStorage.setItem(
+          'nexoraSeenZombies',
+          JSON.stringify(seenZombies)
+        );
+
+        showZombieIntro();
+
+      }else{
+
+        startStage();
+      }
+    }
+
+  },700);
+}
+
+
+/* BOSS */
+
+function showBossIntro(){
+
+  zRunning=false;
+
+  clearInterval(zTimer);
+
+  boss=true;
+
+  document.getElementById('zOverlay')
+    .classList.remove('hidden');
+
+  document.querySelector('.enemy')
+    .textContent='👹';
+
+  document.getElementById('modalTitle')
+    .textContent='👹 باس مرحله '+zStage;
+
+  document.getElementById('modalText')
+    .textContent=
+      'باس دارای جان زیاد و مقاومت بالا است. '+
+      'با شلیک‌های متوالی آن را متوقف کن!';
+
+  document.getElementById('modalButton')
+    .textContent='⚔️ شروع باس‌فایت';
+}
+
+
+function startBoss(){
+
+  document.getElementById('zOverlay')
+    .classList.add('hidden');
+
+  boss=true;
+  bossHealth=100+(zStage*8);
+
+  updateBossBar();
+
+  document.getElementById('bossBar')
+    .style.display='block';
+
+  zRunning=true;
+  zPaused=false;
+
+  zX=15;
+
+  document.getElementById('zombieEntity')
+    .textContent='👹';
+
+  document.getElementById('zombieEntity')
+    .style.left=zX+'%';
+
+  document.getElementById('zMessage')
+    .textContent=
+      '👹 باس وارد شد!';
+
+  clearInterval(zTimer);
+
+  zTimer=setInterval(moveBoss,100);
+}
+
+
+function moveBoss(){
+
+  if(!zRunning || zPaused || zFrozen)
+    return;
+
+  zX+=0.07;
+
+  document.getElementById('zombieEntity')
+    .style.left=zX+'%';
+
+  if(zX>=82){
+
+    if(zShield){
+
+      zShield=false;
+
+      document.getElementById('zMessage')
+        .textContent='🛡️ سپر ضربه باس را گرفت!';
+
+    }else{
+
+      zHealth-=25;
+
+      document.getElementById('zMessage')
+        .textContent='⚠️ باس به پایگاه رسید! -25 جان';
+    }
+
+    zCoins+=20;
+
+    updateZombieHUD();
+
+    if(zHealth<=0){
+
+      gameOverZombie();
 
       return;
     }
 
-    updateZombieUI();
+    zX=15;
   }
 }
 
-function shootZombie(){
 
-  if(paused) return;
+function updateBossBar(){
 
-  coins+=10;
-  zombiePosition=-60;
+  const percent =
+    Math.max(0,(bossHealth/(100+(zStage*8)))*100);
 
-  updateZombieUI();
+  document.getElementById('bossFill')
+    .style.width=percent+'%';
 }
+
+
+function bossDefeated(){
+
+  zRunning=false;
+
+  clearInterval(zTimer);
+
+  boss=false;
+
+  document.getElementById('bossBar')
+    .style.display='none';
+
+  zCoins+=100;
+
+  document.getElementById('zMessage')
+    .textContent=
+      '🏆 باس شکست خورد! +100 سکه';
+
+  updateZombieHUD();
+
+  setTimeout(()=>{
+
+    zStage++;
+
+    currentZombie=zombieTypes[0];
+
+    updateZombieHUD();
+
+    startStage();
+
+  },1000);
+}
+
+
+/* FREEZE */
 
 function freezeZombie(){
 
-  if(paused) return;
+  if(!zRunning || zPaused)
+    return;
 
-  paused=true;
+  if(purchasedFreeze<=0){
+
+    document.getElementById('zMessage')
+      .textContent=
+      '🧪 ماده انجماد نداری. از فروشگاه بخر.';
+
+    return;
+  }
+
+  purchasedFreeze--;
+
+  zFrozen=true;
+
+  document.getElementById('zMessage')
+    .textContent=
+    '🧊 زامبی برای 4 ثانیه متوقف شد!';
 
   setTimeout(()=>{
-    paused=false;
-  },3000);
+
+    zFrozen=false;
+
+  },4000);
 }
+
+
+/* SHIELD */
+
+function useShield(){
+
+  if(!zRunning || zPaused)
+    return;
+
+  if(purchasedShield<=0){
+
+    document.getElementById('zMessage')
+      .textContent=
+      '🛡️ سپر نداری. از فروشگاه بخر.';
+
+    return;
+  }
+
+  purchasedShield--;
+
+  zShield=true;
+
+  document.getElementById('zMessage')
+    .textContent=
+    '🛡️ سپر فعال شد.';
+}
+
+
+/* HEALTH */
+
+function useHealth(){
+
+  if(purchasedHealth<=0){
+
+    document.getElementById('zMessage')
+      .textContent=
+      '❤️ کیت سلامتی نداری.';
+
+    return;
+  }
+
+  if(zHealth>=100){
+
+    document.getElementById('zMessage')
+      .textContent=
+      '❤️ جانت کامل است.';
+
+    return;
+  }
+
+  purchasedHealth--;
+
+  zHealth=
+    Math.min(100,zHealth+25);
+
+  updateZombieHUD();
+
+  document.getElementById('zMessage')
+    .textContent=
+    '❤️ جان افزایش یافت.';
+}
+
+
+/* PAUSE */
 
 function pauseZombieGame(){
 
-  paused=!paused;
+  if(!zRunning)
+    return;
 
-  alert(
-    paused
-    ? "⏸️ بازی متوقف شد"
-    : "▶️ بازی ادامه پیدا کرد"
-  );
+  zPaused=!zPaused;
+
+  document.getElementById('zMessage')
+    .textContent=
+      zPaused ?
+      '⏸️ بازی متوقف شد.' :
+      '▶️ بازی ادامه پیدا کرد.';
 }
 
-function openShop(){
 
-  paused=true;
+/* SHOP */
 
-  const buy=confirm(
-    "🛒 فروشگاه\n\n"+
-    "💰 سکه فعلی: "+coins+
-    "\n\n"+
-    "🔫 ارتقای تفنگ: 50 سکه"+
-    "\n❤️ جان اضافه: 30 سکه"+
-    "\n🧪 فریز: 40 سکه"+
-    "\n\n"+
-    "برای خرید تأیید را بزنید."
-  );
+function openZombieShop(){
 
-  if(buy){
+  zPaused=true;
 
-    if(coins>=50){
-      coins-=50;
-      alert("🔫 تفنگ ارتقا پیدا کرد!");
-    }else{
-      alert("❌ سکه کافی نیست.");
-    }
+  document.getElementById('zShop')
+    .classList.remove('hidden');
 
+  document.getElementById('zMessage')
+    .textContent=
+      '🛒 فروشگاه باز است؛ بازی متوقف شده.';
+}
+
+
+function closeZombieShop(){
+
+  document.getElementById('zShop')
+    .classList.add('hidden');
+
+  zPaused=false;
+
+  document.getElementById('zMessage')
+    .textContent=
+      '▶️ بازی ادامه پیدا کرد.';
+}
+
+
+function buyGun(){
+
+  if(zCoins<50){
+
+    alert('سکه کافی نیست.');
+
+    return;
   }
 
-  paused=false;
+  zCoins-=50;
+  zPower+=5;
 
-  updateZombieUI();
-}
+  updateZombieHUD();
 
-function updateZombieUI(){
-
-  document.getElementById("health").textContent=health;
-  document.getElementById("coins").textContent=coins;
-  document.getElementById("level").textContent=level;
-
+  alert('🔫 اسلحه ارتقا پیدا کرد!');
 }
 
 
-/* شروع اولیه */
+function buyHealth(){
 
-showSection("games");
+  if(zCoins<30){
+
+    alert('سکه کافی نیست.');
+
+    return;
+  }
+
+  zCoins-=30;
+  purchasedHealth++;
+
+  updateZombieHUD();
+
+  alert('❤️ یک کیت سلامتی خریدی.');
+}
+
+
+function buyFreeze(){
+
+  if(zCoins<40){
+
+    alert('سکه کافی نیست.');
+
+    return;
+  }
+
+  zCoins-=40;
+  purchasedFreeze++;
+
+  updateZombieHUD();
+
+  alert('🧪 یک ماده انجماد خریدی.');
+}
+
+
+function buyShield(){
+
+  if(zCoins<60){
+
+    alert('سکه کافی نیست.');
+
+    return;
+  }
+
+  zCoins-=60;
+  purchasedShield++;
+
+  updateZombieHUD();
+
+  alert('🛡️ یک سپر خریدی.');
+}
+
+
+/* GAME OVER */
+
+function gameOverZombie(){
+
+  zRunning=false;
+
+  clearInterval(zTimer);
+
+  saveZombieData();
+
+  document.getElementById('bossBar')
+    .style.display='none';
+
+  document.getElementById('zOverlay')
+    .classList.remove('hidden');
+
+  document.querySelector('.enemy')
+    .textContent='🏁';
+
+  document.getElementById('modalTitle')
+    .textContent='پایان بازی';
+
+  document.getElementById('modalText')
+    .textContent=
+      'مرحله نهایی تو: '+zStage+
+      ' | رکورد ذخیره شد.';
+
+  document.getElementById('modalButton')
+    .textContent='🔄 شروع دوباره';
+
+  document.getElementById('modalButton')
+    .onclick=restartZombie;
+
+}
+
+
+function restartZombie(){
+
+  document.getElementById('modalButton')
+    .onclick=modalAction;
+
+  startZombieGame();
+
+}
+
+
+/* INITIAL */
+
+clearSearch();
 
 </script>
 
 </body>
-    </html>
+</html>
